@@ -1,0 +1,2 @@
+yang 3 A001 engsh:88 math:72 66
+wang 2 A002 80 95
