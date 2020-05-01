@@ -1,62 +1,34 @@
-#include  <string>
-#include  <iostream>
-#include  <fstream> 
+#include <string>
+#include <iostream>
+#include <fstream>
 #include <vector>
+#include <iomanip>
 using namespace std;
-struct course
+struct course //Create a course structure for every course
 {
     string CourseName;
-    int mark;
+    float mark;
 };
-struct student
+struct student //Create a student structure for every student
 {
     string name;
     int number;
     string id;
-    vector<course> ks;
+    vector<course> ks; //Create a vector for the different courses a student may have
 };
-vector<student> Class;
+vector<student> Class; //Create a class vector to hold every student
+
 int main()
 {
-    struct student stu0;
-    stu0.name="yang";
-    stu0.number=3;
-    stu0.id="A0001";
-    stu0.ks.push_back({"English",98});
+    struct student stu;
+    stu.ks.resize(1);
+    string line;
+    ifstream in("../A2Q3/StudentsRecords.txt");
+    while (getline(in, line,' '))
     {
-        /* data */
-    };
+   
+            line >> stu.name >> stu.number >> stu.id >> stu.ks[0].CourseName >> stu.ks[0].mark;
+            cout << stu.name;
+    }
     
-    Class.push_back(stu0);   
-    cout << Class[0].ks[0].CourseName<<endl;
-
-    Class[0].ks.push_back({"math",90});
-    cout << Class[0].ks[1].CourseName<<endl;
-    cout << Class[0].number<<endl;
-    
-    // {
-    //     /* data */
-    // };
-//     int n = 0;
-//     ifstream FF("a.txt", ios::in);
-//     if(!FF.is_open())
-//     {
-//         cout << "Error: opening file fail" << endl;
-//         exit(1);
-//     }
-//     while(!FF.eof() && n < 2)
-//     {
-//         FF >> stu[n].name >> stu[n].age >> stu[n].id >> stu[n].ks[0].CourseName >> stu[n].cj.mathmark >> stu[n].cj.phsicmark ;
-//         Class.push_back(stu[n]);
-//         n++;
-//     }
- 
-//     //test
-//     for (int i = 0; i < n; ++i)
-//         cout << stu[i].name;
-// //        cout << "name:" << stu[i].name << " age:" << stu[i].age << " id:" << stu[i].id  << stu[i].coursename[0] << stu[i].tt[0] << " math:" << stu[i].tt[1] << " physic:" << stu[i].tt[2] << endl;
-         
-//     FF.close();
-
-    return 0;
 }
