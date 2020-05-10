@@ -1,0 +1,3 @@
+lisa	2	A203	math	93	english	90	
+sam	2	EF36	math	62	chem	82	
+peter	2	TP2e5	math	83	english	92	

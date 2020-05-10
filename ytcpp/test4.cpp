@@ -1,14 +1,15 @@
 #include <iostream>
 using namespace std;
-int aa(int x){
-    if(1==2) return 100000;   
+int fn(int x)
+{
+    1==1? x=100:x=200;
+    return x;
 }
 int main(){
-    int b=aa(5);
+    int b=fn(5);
     cout << b << endl;
-    string ss="hello";
-    for(int i=ss.length()-1;i>=0;i--){
-        cout << ss[i] << endl;
+    string a="123456";
+    for(int x=a.length()-1;x>=0;x--){
+        cout << a[x];
     }
 }
-    

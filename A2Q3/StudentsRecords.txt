@@ -1,4 +1,0 @@
-Yang	1	A0001	English	98.5	
-Tong	2	A0002	English	89.5	Math	98.5	
-RRRR	3	A0004	English	90	Phisci	60	CHemical	100.05	
-JKDHKFHS32	2	Afdfdsj0008	English	80.8	MAth	80.5	
