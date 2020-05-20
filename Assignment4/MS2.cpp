@@ -1,140 +1,126 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include <algorithm>
 using namespace std;
-int Row,Column;
-int Mine = 0;
-string TempMap;
+
 vector <string> MineMap;
-struct point
+struct coordinate
 {
     int x;
     int y;
 };
-point tempxy;
-vector <point> SimplePoints;
-int Minesweeper(int r, int c)
+vector <coordinate> ps;
+int row=16;
+int col=30;
+void RedFile(){
+    string tempstr;
+    ifstream InFile("Minesweeper.txt", ios::in); //open the house plan file
+    if (!InFile.is_open())                       //if can't open the file then send an error
+    {
+        cout << "Error: opening file fail" << endl;
+        exit(1);
+    }
+    for (int i = 0; i < 16; i++)
+    {
+        InFile >> tempstr;
+            MineMap.push_back(tempstr);
+    }
+    while (!InFile.eof())
+    {
+        coordinate temp;
+        InFile >> temp.x >> temp.y;
+        ps.push_back(temp);
+    }
+    InFile.close();
+}
+int Minesweeper(int x, int y)
 {
     int Area = 0;
-    if(r>=0 && r<16 && c>=0 && c<30 && MineMap[r][c] == '.')
-    {
-        Area=1;
-        MineMap[r][c]='A';
-        Area +=Minesweeper(r + 1, c);
-        Area +=Minesweeper(r - 1, c);
-        Area +=Minesweeper(r, c - 1);
-        Area +=Minesweeper(r, c + 1);
-        Area +=Minesweeper(r + 1, c + 1);
-        Area +=Minesweeper(r - 1, c + 1);
-        Area +=Minesweeper(r + 1, c - 1);
-        Area +=Minesweeper(r - 1, c - 1);
-    }
-    else if(r>=0 && r<16 && c>=0 && c<30 && MineMap[r][c] == '?')
+    if (x > 0 && x < row && y > 0 && y < col && MineMap[x][y] == '.')
     {
         Area = 1;
-        MineMap[r][c]=char(Area+48);
+        MineMap[x][y] = 'A';
+        Area += Minesweeper(x + 1, y);
+        Area += Minesweeper(x - 1, y);
+        Area += Minesweeper(x, y - 1);
+        Area += Minesweeper(x, y + 1);
+        Area += Minesweeper(x + 1, y + 1);
+        Area += Minesweeper(x - 1, y + 1);
+        Area += Minesweeper(x + 1, y - 1);
+        Area += Minesweeper(x - 1, y - 1);
+    }
+    else if (x > 0 && x < row && x > 0 && x < col && MineMap[x][y] == '?')
+    {
+        Area = 1;
+        MineMap[x][y] = 'B';
     }
     return Area;
 }
+void Display(){
+    for (string ss:MineMap){
+        cout << ss << endl;
+    }
+    for (coordinate p:ps){
+        cout << p.x << ',' << p.y << endl;
+    }
+}
 int main()
 {
-    ifstream InFile("Minesweeper.txt",ios::in);//open the house plan file
-    if(!InFile.is_open())//if can't open the file then send an error
-    {
-        cout << "Error: opening file fail" << endl;
-        exit(0);
-    }
-    for(int i=0; i<16; i++)
-    {
-        InFile >> TempMap;
-        MineMap.push_back(TempMap);
-    }
-    while(!InFile.eof())
-    {
-        InFile >> tempxy.x >> tempxy.y;
-        SimplePoints.push_back(tempxy);
-    }
-    InFile.close();
-    int R=MineMap.size();
-    int C=MineMap[0].length();
-    cout << R << C << endl;
-    for(int i=0; i<R; i++)
-    {
-         for(int j=0; j<C; j++)
-         {
-             Minesweeper(i,j);
-         }
-    }
+    RedFile();
 
-    // for(int i=0; i<16; i++)
+    for (int x = 0; x < row; x++)
+    {
+        for (int y = 0; y < col; y++)
+        {
+            int ot=0;
+            int k=MineMap[x][y];
+            if (k=='X') continue;
+            if (k=='.') 
+            {
+                if (y-1<0) 
+                {
+                    if (MineMap[x][y]=='X') k='?';
+                }
+                
+            }
+            // if (MineMap[x][y - 1] == 'X'&& MineMap[x][y]=='.')
+            //     MineMap[x][y] = '?';
+            // if (MineMap[x][y + 1] == 'X'&&MineMap[x][y]=='.')
+            //     MineMap[x][y] = '?';
+            // if (MineMap[x + 1][y] == 'X'&&MineMap[x][y]=='.')
+            //     MineMap[x][y] = '?';
+            // if (MineMap[x - 1][y] == 'X'&&MineMap[x][y]=='.')
+            //     MineMap[x][y] = '?';
+            // if (MineMap[x - 1][y - 1] == 'X'&&MineMap[x][y]=='.')
+            //     MineMap[x][y] = '?';
+            // if (MineMap[x - 1][y + 1] == 'X'&&MineMap[x][y]=='.')
+            //     MineMap[x][y] = '?';
+            // if (MineMap[x + 1][y - 1] == 'X'&&MineMap[x][y]=='.')
+            //     MineMap[x][y] = '?';
+            // if (MineMap[x + 1][y + 1] == 'X'&&MineMap[x][y]=='.')
+                
+        }
+    } 
+
+    Display();
+    // for(int i=0; i<samples.size(); i++)
     // {
-    //     for(int j=0; j<30; j++)
+    //     if(MineMap[samples[i].x][samples[i].y]=='X')
+    //         cout << "MINE at (" << samples[i].x << "," << samples[i].y << ") - YOU LOSE" << endl;
+    //     else if(MineMap[samples[i].x][samples[i].y]=='?')
     //     {
-    //         if(MineMap[i][j]!='X' && i-1>=0 && j-1>=0 && i+1<=15 && j+1<=29)
-    //         {
-    //             if(MineMap[i-1][j-1]=='X'||MineMap[i-1][j]=='X'||MineMap[i-1][j+1]=='X'||MineMap[i][j-1]=='X'||MineMap[i][j+1]=='X'||MineMap[i+1][j-1]=='X'||MineMap[i+1][j]=='X'||MineMap[i+1][j+1]=='X')
-    //                 MineMap[i][j]='?';
-    //         }
-    //         else if(MineMap[i][j]!='X' && i==0 && j-1>=0 && i+1<=15 && j+1<=29)
-    //         {
-    //             if(MineMap[i][j-1]=='X'||MineMap[i][j+1]=='X'||MineMap[i+1][j-1]=='X'||MineMap[i+1][j]=='X'||MineMap[i+1][j+1]=='X')
-    //                 MineMap[i][j]='?';
-    //         }
-    //         else if(MineMap[i][j]!='X' && i-1>=0 && j==0 && i+1<=15 && j+1<=29)
-    //         {
-    //             if(MineMap[i-1][j]=='X'||MineMap[i-1][j+1]=='X'||MineMap[i][j+1]=='X'||MineMap[i+1][j]=='X'||MineMap[i+1][j+1]=='X')
-    //                 MineMap[i][j]='?';
-    //         }
-    //         else if(MineMap[i][j]!='X' && i-1>=0 && j-1>=0 && i==15 && j+1<=29)
-    //         {
-    //             if(MineMap[i-1][j-1]=='X'||MineMap[i-1][j]=='X'||MineMap[i-1][j+1]=='X'||MineMap[i][j-1]=='X'||MineMap[i][j+1]=='X')
-    //                 MineMap[i][j]='?';
-    //         }
-    //         else if(MineMap[i][j]!='X' && i-1>=0 && j-1>=0 && i+1<=15 && j==29)
-    //         {
-    //             if(MineMap[i-1][j-1]=='X'||MineMap[i-1][j]=='X'||MineMap[i][j-1]=='X'||MineMap[i+1][j-1]=='X'||MineMap[i+1][j]=='X')
-    //                 MineMap[i][j]='?';
-    //         }
-    //     }
-    // }
-    // for(int i=0; i<Rows.size(); i++)
-    // {
-    //     if(MineMap[Rows[i]][Columns[i]]=='X')
-    //     {
-    //         cout << "MINE at (" << Rows[i]+1 << "," << Columns[i]+1 << ") - YOU LOSE" << endl;
-    //     }
-    //     else if(MineMap[Rows[i]][Columns[i]]=='?')
-    //     {
-    //         if(MineMap[Rows[i]-1][Columns[i]]=='X') Mine++;
-    //         if(MineMap[Rows[i]-1][Columns[i]-1]=='X') Mine++;
-    //         if(MineMap[Rows[i]-1][Columns[i]+1]=='X') Mine++;
-    //         if(MineMap[Rows[i]][Columns[i]+1]=='X') Mine++;
-    //         if(MineMap[Rows[i]+1][Columns[i]]=='X') Mine++;
-    //         if(MineMap[Rows[i]][Columns[i]-1]=='X') Mine++;
-    //         if(MineMap[Rows[i]+1][Columns[i]+1]=='X') Mine++;
-    //         if(MineMap[Rows[i]+1][Columns[i]-1]=='X') Mine++;
-    //         cout << "NO MINE at (" << Rows[i]+1 << "," << Columns[i]+1 << ") - "<< Mine <<" SURROUNDING IT" << endl;
+    //         if(MineMap[samples[i].x-1][samples[i].y]=='X') Mine++;
+    //         if(MineMap[samples[i].x-1][samples[i].y-1]=='X') Mine++;
+    //         if(MineMap[samples[i].x-1][samples[i].y+1]=='X') Mine++;
+    //         if(MineMap[samples[i].x][samples[i].y+1]=='X') Mine++;
+    //         if(MineMap[samples[i].x+1][samples[i].y]=='X') Mine++;
+    //         if(MineMap[samples[i].x][samples[i].y-1]=='X') Mine++;
+    //         if(MineMap[samples[i].x+1][samples[i].y+1]=='X') Mine++;
+    //         if(MineMap[samples[i].x+1][samples[i].y-1]=='X') Mine++;
+    //         cout << "NO MINE at (" << samples[i].x << "," << samples[i].y << ") - "<< Mine <<" SURROUNDING IT" << endl;
     //         Mine=0;
     //     }
     //     else
-    //     {
-    //         cout << "NO MINE at (" << Rows[i]+1 << "," << Columns[i]+1 << ") - "<< Minesweeper(Rows[i],Columns[i]) <<" SQUARES REVEALED" << endl;
-    //     }
+    //         cout << "NO MINE at (" << samples[i].x << "," << samples[i].y << ") - "<< Minesweeper(samples[i].x,samples[i].y) <<" SQUARES REVEALED" << endl;
     // }
-    // for(int i=0; i<MineMap.size(); i++)
-    // {
-    //     cout << MineMap[i]<<endl;
-    // }
-    for(string p:MineMap){
-        cout << p << endl;
-    }
-    for(point p:SimplePoints){
-        cout << p.x << ',' << p.y << endl;
-    }
-   	// for(int i = 0; i < SimplePoints.size(); i++)
-	// {
-	// cout <<"[" <<SimplePoints.at(i).x <<"  ,  " <<SimplePoints.at(i).y <<"]" <<endl;
-	// }
-
 }

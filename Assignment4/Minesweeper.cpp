@@ -24,7 +24,7 @@ int Minesweeper(int r, int c)
         Area +=Minesweeper(r + 1, c - 1);
         Area +=Minesweeper(r - 1, c - 1);
     }
-    else if(r>=0 && r<16 && c>=0 && c<30 && MineMap[r][c] == '?')
+    else if(r>=0 && r<16 && c>=0 && c<30 && MineMap[r][c] = '')
     {
         Area = 1;
         MineMap[r][c]='B';

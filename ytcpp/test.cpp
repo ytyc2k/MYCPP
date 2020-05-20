@@ -20,15 +20,15 @@ vector<student> Class; //Create a class vector to hold every student
 
 int main()
 {
-    struct student stu;
-    stu.ks.resize(1);
-    string line;
-    ifstream in("../A2Q3/StudentsRecords.txt");
-    while (getline(in, line,' '))
+    int a=20;
+    int i = 0;
+    int k = i+++5;
+    cout << k << endl;
+    cout << i << endl;
+    if(a-- ==19)
     {
-   
-            line >> stu.name >> stu.number >> stu.id >> stu.ks[0].CourseName >> stu.ks[0].mark;
-            cout << stu.name;
+        cout << "!!!";
     }
-    
+     
+     cout << string(30, 'I') << endl;
 }
