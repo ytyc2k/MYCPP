@@ -1,5 +1,5 @@
 '''
-J4/S1: Flipper
+Problem J4/S1: Flipper
 '''
 M1=[1,2]
 M2=[3,4]
