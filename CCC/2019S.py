@@ -11,3 +11,4 @@ for i in input():
         M1,M2=M2,M1
 print(M1[0],M1[1])
 print(M2[0],M2[1])
+
