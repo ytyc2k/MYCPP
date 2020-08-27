@@ -49,46 +49,66 @@
 # m='1234567890'
 # print([m[-i-1:]+m[:-i-1] for i in range(len(m))])
 
+# '''
+# 字符串和列表的操作比较
+# '''
+
+# print('查-------------')
+# ss='1231123'
+# print(ss.find('3')) # 2 find()函数如果查不到会返回一个-1
+
+# lst=[1,2,3,1,1,2,3]
+# print(lst.index(4)) # 2 index()函数如果查不到值会报错
+
+# print('改-------------')
+
+# ss="123hahahaha123"
+# ss=ss.replace('h','m',2)
+# print(ss) # '123mamahaha123'
+
+# ss="123hahahaha123"
+# ss=ss.strip('123') # 可以去除头尾指定字符，参数为空时，默认去除字符串中头尾的空格字符 lstrip(),rstrip()
+# print(ss) # 'hahahaha'
+
+# import re
+# s = '\tabc\t123\txyz\ropq\r'
+# t = re.sub('[\t\r]', '', s)
+# print(t) # 'abc123xyzopq'
+
+# lst=[1,2,3,1,1,2,3]
+# lst[2]='hello'
+# lst[3:5]='hello',4
+# print(lst) # [1,2,'hello',1,1,2,3]
+
+# print('增-------------')
+# ss=ss+'add'
+# lst.append('2')
+# lst.extend(('a','b'))
+# lst.insert(5,'insert')
+
+# print('删-------------')
+# ss=ss.replace('1','',1)
+
+# del lst[0]  # index
+# lst.pop(0)  # index
+# lst.remove(3) # value
+
+# '''
+# slider window
+# '''
+# a='abcdefg'
+# b = [a[i:i+3] for i in range(len(a)-2)]
+# print(b)
+# # ['abc', 'bcd', 'cde', 'def', 'efg']
+
 '''
-字符串和列表的操作比较
+字典替换
 '''
-
-print('查-------------')
-ss='1231123'
-print(ss.find('3')) # 2 find()函数如果查不到会返回一个-1
-
-lst=[1,2,3,1,1,2,3]
-print(lst.index(4)) # 2 index()函数如果查不到值会报错
-
-print('改-------------')
-
-ss="123hahahaha123"
-ss=ss.replace('h','m',2)
-print(ss) # '123mamahaha123'
-
-ss="123hahahaha123"
-ss=ss.strip('123') # 可以去除头尾指定字符，参数为空时，默认去除字符串中头尾的空格字符 lstrip(),rstrip()
-print(ss) # 'hahahaha'
-
-import re
-s = '\tabc\t123\txyz\ropq\r'
-t = re.sub('[\t\r]', '', s)
-print(t) # 'abc123xyzopq'
-
-lst=[1,2,3,1,1,2,3]
-lst[2]='hello'
-lst[3:5]='hello',4
-print(lst) # [1,2,'hello',1,1,2,3]
-
-print('增-------------')
-ss=ss+'add'
-lst.append('2')
-lst.extend(('a','b'))
-lst.insert(5,'insert')
-
-print('删-------------')
-ss=ss.replace('1','',1)
-
-del lst[0]  # index
-lst.pop(0)  # index
-lst.remove(3) # value
+dic={'B':'AA'}
+ss='ABCDEFBABG'
+s=''
+i=0
+while (n:=ss.find('B',i))!=-1:
+    ss=ss[:n]+dic['B']+ss[n+len(dic['B']):]
+    i=n+1
+print(ss)

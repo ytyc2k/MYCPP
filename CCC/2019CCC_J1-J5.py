@@ -51,36 +51,39 @@ Problem J3: Cold Compress
 # for j in range(len(lst2)):
 #     print(lst2[j])
 
-'''
-Problem J4/S1: Flipper
-'''
-M1=[1,2]
-M2=[3,4]
-for i in input():
-    if i=='V':
-        M1.reverse()
-        M2.reverse()
-    elif i=='H':
-        M1,M2=M2,M1
-print(M1[0],M1[1])
-print(M2[0],M2[1])
+# '''
+# Problem J4/S1: Flipper
+# '''
+# M1=[1,2]
+# M2=[3,4]
+# for i in input():
+#     if i=='V':
+#         M1.reverse()
+#         M2.reverse()
+#     elif i=='H':
+#         M1,M2=M2,M1
+# print(M1[0],M1[1])
+# print(M2[0],M2[1])
 
 '''
 Problem J5: Rule of Three
 '''
+import time
+t1=time.time()
 lst=[]
 rlst=[]
-for i in range(3):
-    lst.append((input().split()))
-S, I, F = input().split()
-S = int(S)
+# for i in range(3):
+#     lst.append((input().split()))
+# S, I, F = input().split()
+# S = int(S)
+lst=[('AA','AB'),('AB','BB'),('B','AA')]
+S, I, F = 12,'AB','AAAB'
 def rec(S, I, rlst):
     if S == 0 and I == F:
         return rlst
     elif S == 0:
         return False
     for rule, (a, b) in enumerate(lst, start = 1):
-        print(rule)
         index = -1
         while True:
             index = I.find(a, index + 1)
@@ -91,16 +94,22 @@ def rec(S, I, rlst):
             if ans:
                 return ans
     return False
-ans = rec(S, I, rlst)
-print(ans)
-for i, j, k in ans:
-    print(i, j + 1, k)
+if(rec(S,I,rlst) == False):
+    print("Impossible")
+else:
+    ans = rec(S,I,rlst)
+    for i, j, k in ans:
+        print(i, j + 1, k)
+t2=time.time()
+print(t2-t1)
 
 # '''
 # Problem J5: Rule of Three
 # '''
+# import time
+# t1=time.time()
 # Rule=(('AA','AB'),('AB','BB'),('B','AA'))
-# N=4 
+# N=6
 # INPT,OTPT='AB','AAAB'
 # def f(a,b,c,ss):
 #     for x in Rule:
@@ -114,9 +123,12 @@ for i, j, k in ans:
 # for i in range(N):
 #     for x in lst[-len(lst):]:
 #         f(x[0],x[1],x[2],x[-1])
-# for x in lst:
-#     if x[-1]==OTPT:
-#         print(x)
-
+# print(len(lst))
+# print(lst[-100])
+# # for x in lst:
+# #     if x[-1]==OTPT:
+# #         print(x)
+# t2=time.time()
+# print(t2-t1)
 
     
