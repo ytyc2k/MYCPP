@@ -104,11 +104,18 @@
 '''
 字典替换
 '''
-dic={'B':'AA'}
+dic={'AA':'AB','AB':'BB','B':'AA'}
 ss='ABCDEFBABG'
-s=''
-i=0
-while (n:=ss.find('B',i))!=-1:
-    ss=ss[:n]+dic['B']+ss[n+len(dic['B']):]
-    i=n+1
-print(ss)
+lst=[]
+for x in dic:
+    n=-1
+    while (n:=ss.find(x,n+1))!=-1:
+        lst.append(ss[:n]+dic[x]+ss[n+len(x):])
+print(lst)
+# -------------------------------------------------------------------------
+# ['BBCDEFBABG', 'ABCDEFBBBG', 'AAACDEFBABG', 'ABCDEFAAABG', 'ABCDEFBAAAG']
+
+lst=[('AA','AB'),('AB','BB'),('B','AA')]
+for rule, (a, b) in enumerate(lst, start = 1):
+    print(rule,(a,b))
+print(lst)

@@ -76,59 +76,52 @@ rlst=[]
 #     lst.append((input().split()))
 # S, I, F = input().split()
 # S = int(S)
-lst=[('AA','AB'),('AB','BB'),('B','AA')]
-S, I, F = 12,'AB','AAAB'
-def rec(S, I, rlst):
-    if S == 0 and I == F:
-        return rlst
-    elif S == 0:
-        return False
-    for rule, (a, b) in enumerate(lst, start = 1):
-        index = -1
-        while True:
-            index = I.find(a, index + 1)
-            if index == -1:
-                break
-            sub_str = I[:index] + b + I[index + len(a):]
-            ans = rec(S - 1, sub_str[:], rlst + [(rule, index, sub_str)])
-            if ans:
-                return ans
-    return False
-if(rec(S,I,rlst) == False):
-    print("Impossible")
-else:
-    ans = rec(S,I,rlst)
-    for i, j, k in ans:
-        print(i, j + 1, k)
-t2=time.time()
-print(t2-t1)
 
-# '''
-# Problem J5: Rule of Three
-# '''
-# import time
-# t1=time.time()
-# Rule=(('AA','AB'),('AB','BB'),('B','AA'))
-# N=6
-# INPT,OTPT='AB','AAAB'
-# def f(a,b,c,ss):
-#     for x in Rule:
-#         i=0
-#         while (n:=ss.find(x[0],i))!=-1:
-#             s=ss[:n]+x[1]+ss[n+len(x[0]):]
-#             lst.append((a+'-'+str(Rule.index(x)+1),b+'-'+str(n+1),c+'-'+s,s))
-#             i=n+1
-#     return lst
-# lst=[('','','',f'{INPT}')]
-# for i in range(N):
-#     for x in lst[-len(lst):]:
-#         f(x[0],x[1],x[2],x[-1])
-# print(len(lst))
-# print(lst[-100])
-# # for x in lst:
-# #     if x[-1]==OTPT:
-# #         print(x)
+# lst=[('AA','AB'),('AB','BB'),('B','AA')]
+# S, I, F = 4,'AB','AAAB'
+# def rec(S, I, rlst):
+#     if S == 0 and I == F:
+#         return rlst
+#     elif S == 0:
+#         return False
+#     for rule, (a, b) in enumerate(lst, start = 1):
+#         index = -1
+#         while(index:=I.find(a,index+1))!=-1:
+#             sub_str = I[:index] + b + I[index + len(a):]
+#             if ans := rec(S - 1, sub_str, rlst + [(rule, index, sub_str)]):
+#                 return ans
+#     return False
+# if ans:=rec(S,I,rlst):
+#     for i, j, k in ans:
+#         print(i, j + 1, k)
+
 # t2=time.time()
 # print(t2-t1)
+
+'''
+Problem J5: Rule of Three
+'''
+import time
+t1=time.time()
+Rule=(('AA','AB'),('AB','BB'),('B','AA'))
+N=4
+INPT,OTPT='AB','AAAB'
+def f(a,b,c,ss):
+    for r,x in enumerate(Rule,start=1):
+        n=-1
+        while (n:=ss.find(x[0],n+1))!=-1:
+            s=ss[:n]+x[1]+ss[n+len(x[0]):]
+            lst.append((a+'-'+str(r),b+'-'+str(n+1),c+'-'+s,s))
+
+lst=[('','','',f'{INPT}')]
+for i in range(N):
+    for x in lst[-len(lst):]:
+        f(x[0],x[1],x[2],x[-1])
+print(len(lst))
+for x in lst:
+    if x[-1]==OTPT:
+        print(x)
+t2=time.time()
+print(t2-t1)
 
     
