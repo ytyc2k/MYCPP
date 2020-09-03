@@ -73,6 +73,7 @@
 # '''
 # Problem J5: Nailed It!
 # '''
+# import itertools
 # n = int(input())
 # boards = [int(x) for x in input().split()]
 # boards.sort()
@@ -82,8 +83,12 @@
 #     for j in tmp:
 #         if boards[i] == j and boards.count(boards[i]) // 2 > hlist.count(boards[i] + j) or tmp.count(boards[i]) == 0:
 #             hlist.append(boards[i] + j)
+#             print(hlist)
+#             print(tmp)
 #             if hlist.count(hlist[-1]) > maxlength:
 #                 maxlength, output = hlist.count(hlist[-1]), 1
 #             elif hlist.count(hlist[-1]) == maxlength: 
 #                 output = output + 1
+#             print(maxlength)
+#             print(output)
 # print(maxlength, output)
