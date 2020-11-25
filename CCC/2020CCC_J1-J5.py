@@ -1,11 +1,16 @@
+# #######################################
+#  @ Canadian Computing Competition     #
+#  @ Junior 2020                        #
+#  @ Author : Jun Yang                  #
+#  @ Time   : 2020-08-23                #
+# #######################################
+
 # '''
 # Problem J1: Dog Treats
 # '''
-# S = int(input())
-# M = int(input())
-# L = int(input())
+# S, M, L = [ int(input()) for _ in range(3) ]
 # H = 1 * S + 2 * M + 3 * L
-# print('happy') if H > =10 else print('sad')
+# print('happy') if H > = 10: else print('sad')
 
 
 # '''
@@ -59,8 +64,8 @@ def GetSubBranch(x):
                 ss.append(rooms[(i-1)*N+j-1])
     return ss
 M,N=3,4
-rooms = [3, 10, 8, 14, 
-         1, 11, 12, 12, 
+rooms = [3, 10, 8, 14,
+         1, 11, 12, 12,
          6, 2, 3, 9]
 ss=[rooms[0]]
 while ss:

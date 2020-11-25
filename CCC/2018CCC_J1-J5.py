@@ -5,16 +5,16 @@
 #  @ Time   : 2020-08-27                #
 # #######################################
 
-# '''
-# Problem J1: Telemarketer or not?
-# '''
-# lst=[]
-# for i in range(4):
-#     lst.append(input())
-# if lst[0] > 7 and lst[0] < 10 and lst[1] == lst[2] and lst[3] > 7 and lst[3] < 10:
-#     print('ignore')
-# else:
-#     print('answer')
+'''
+Problem J1: Telemarketer or not?
+'''
+lst=[]
+for i in range(4):
+    lst.append(input())
+if lst[0] > 7 and lst[0] < 10 and lst[1] == lst[2] and lst[3] > 7 and lst[3] < 10:
+    print('ignore')
+else:
+    print('answer')
 
 # '''
 # Problem J2: Occupy parking

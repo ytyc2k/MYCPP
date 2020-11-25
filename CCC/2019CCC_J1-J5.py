@@ -101,8 +101,6 @@ rlst=[]
 '''
 Problem J5: Rule of Three
 '''
-import time
-t1=time.time()
 Rule=(('AA','AB'),('AB','BB'),('B','AA'))
 N=4
 INPT,OTPT='AB','AAAB'
@@ -111,17 +109,13 @@ def f(a,b,c,ss):
         n=-1
         while (n:=ss.find(x[0],n+1))!=-1:
             s=ss[:n]+x[1]+ss[n+len(x[0]):]
-            lst.append((a+'-'+str(r),b+'-'+str(n+1),c+'-'+s,s))
-
+            lst.append((f'{a}-{str(r)}',f'{b}-{str(n+1)}',f'{c}-{s}',f'{s}'))
+            if s==OTPT:
+                return 1
 lst=[('','','',f'{INPT}')]
-for i in range(N):
+for i in range(4):
     for x in lst[-len(lst):]:
-        f(x[0],x[1],x[2],x[-1])
-print(len(lst))
-for x in lst:
-    if x[-1]==OTPT:
-        print(x)
-t2=time.time()
-print(t2-t1)
-
+        if f(x[0],x[1],x[2],x[-1])==1:
+            break
+print(lst[-1])
     
